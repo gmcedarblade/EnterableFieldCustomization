@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Paragraph with Editable Text and Spell Check</title>
+        <meta charset="utf-8">
+        <style>
+        </style>
+
+    </head>
+    
+    <body>
+        <div class="testArea" style="border: 1px solid #000;">
+<!--            <p contenteditable="true" spellcheck="true">This si a tast</p>-->
+            <form style="padding: 10px;">
+                <label>Medication</label>
+                <input type="text" spellcheck="true" id="drugName">
+<!--
+                <label>Description</label>
+                <input type="text" spellcheck="true" id="drugDescription">
+-->
+                <button class="submit">Submit</button>
+            </form>
+        </div>
+        <div class="medList">
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            console.log("here1");
+            // get references
+            var drugName = document.querySelector('#drugName');
+            var submit = document.querySelector('.submit');
+            var medList = document.querySelector('.medList');
+            
+            // counter
+            var number = 0;
+            console.log('end');
+            submit.addEventListener("click", function(e) {
+                
+                e.preventDefault();
+                console.log("here");
+                // increase counter
+                number += 1;
+                
+                // get value of drug name that was entered
+                var newDrugName = drugName.value;
+                
+                // create new unordered list
+                var unorderedList = document.createElement('ul');
+                
+                // create new list item for new unordered list
+                var listItem = document.createElement('li');
+                
+                // set the id for new list item to be drug + the incremented counter number
+                listItem.setAttribute('id', 'drug' + number);
+                
+                // create new text node to drug name that was entered
+                var newDrug = document.createTextNode(newDrugName);
+                
+                // append newDrug to new listItem to have the value of the entered drug name
+                listItem.appendChild(newDrug);
+                
+                // append the unorderList to div.medList
+                medList.appendChild(unorderedList);
+                
+                // append listItem with drug name to unorderedList
+                unorderedList.appendChild(listItem);
+                
+                
+            }, false);
+            
+        </script>    
+    </body>
+</html>
